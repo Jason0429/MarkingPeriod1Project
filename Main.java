@@ -11,17 +11,15 @@ public class Main {
 
         Hangman game = new Hangman(name);
 
-        game.addWord("cheese");
-        game.addWord("burger");
-        game.addWord("mcdonalds");
-        game.addWord("pizza");
-        game.addWord("jackpot");
-        game.addWord("xylophone");
-        game.addWord("zombie");
-        game.addWord("syndrome");
-        game.addWord("puppy");
-        game.addWord("microwave");
-        game.addWord("zodiac");
+        Hangman.addWord("cheese");
+        Hangman.addWord("burger");
+        Hangman.addWord("mcdonalds");
+        Hangman.addWord("pizza");
+        Hangman.addWord("jackpot");
+        Hangman.addWord("xylophone");
+        Hangman.addWord("zombie");
+        Hangman.addWord("syndrome");
+        Hangman.addWord("zodiac");
 
         game.start();
 
