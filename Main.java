@@ -5,6 +5,6 @@ public class Main {
         game.addWord("xylophone");
         game.addWord("pizza");
 
-        GUI gui = new GUI(game);
+        game.start();
     }
 }

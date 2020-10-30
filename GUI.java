@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class GUI implements ActionListener {
+public class GUI extends Hangman implements ActionListener {
+
     private JFrame frame;
     private JLabel label;
     private JPanel panel;
-    private JButton button;
     private JLabel hangman; // Panel
     private JLabel word; // Panel
-    
-    public GUI(Hangman game) {
+
+    public GUI() {
+
         // Main frame window
         frame = new JFrame();
 
@@ -25,27 +26,27 @@ public class GUI implements ActionListener {
         // Define hangman container
         hangman = new JLabel();
         // hangman.setFont(new Font("Serif", Font.PLAIN, 14));
-        hangman.setText(game.generateHangman());
+        hangman.setText(getHangman());
         hangman.setHorizontalAlignment(JLabel.CENTER);
         hangman.setSize(200, 200);
 
         // Define word container
         word = new JLabel();
-        word.setText(game.generateWord());
+        word.setText(getProgressWord());
         word.setHorizontalAlignment(JLabel.CENTER);
         word.setSize(400, 200);
 
         // Define labels
         label = new JLabel("Welcome to Hangman!");
         label.setHorizontalAlignment(JLabel.CENTER);
-        
+
         // Add components
         panel.add(label);
         panel.add(hangman);
         panel.add(word);
         panel.add(generateKeyboard());
         frame.add(panel);
-        
+
         // Set default conditions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Hangman by Jason Cheung");
@@ -53,7 +54,6 @@ public class GUI implements ActionListener {
         frame.setSize(800, 600);
         frame.setResizable(false);
         frame.setVisible(true); // Put last
-
     }
 
     @Override
@@ -71,8 +71,9 @@ public class GUI implements ActionListener {
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String letterInButton = button.getText();
-                    listOfLettersGuessed.add(letterInButton);
                     guessLetter(letterInButton);
+                    hangman.setText(getHangman());
+                    word.setText(getProgressWord());
                     button.setEnabled(false);
                 }
             });
