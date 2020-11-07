@@ -1,20 +1,19 @@
 import javax.swing.*;
-import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class GUI extends Hangman implements ActionListener {
+public class GUI implements ActionListener {
 
     private JFrame frame;
     private JLabel label;
     private JPanel panel;
     private JLabel hangman; // Panel
     private JLabel word; // Panel
+    private String title;
 
-    public GUI() {
+    public GUI(String title) {
 
         // Main frame window
         frame = new JFrame();
@@ -26,13 +25,13 @@ public class GUI extends Hangman implements ActionListener {
         // Define hangman container
         hangman = new JLabel();
         // hangman.setFont(new Font("Serif", Font.PLAIN, 14));
-        hangman.setText(getHangman());
+        // hangman.setText(getHangman());
         hangman.setHorizontalAlignment(JLabel.CENTER);
         hangman.setSize(200, 200);
 
         // Define word container
         word = new JLabel();
-        word.setText(getProgressWord());
+        // word.setText(getProgressWord());
         word.setHorizontalAlignment(JLabel.CENTER);
         word.setSize(400, 200);
 
@@ -49,7 +48,7 @@ public class GUI extends Hangman implements ActionListener {
 
         // Set default conditions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Hangman by Jason Cheung");
+        frame.setTitle(this.title);
         frame.pack();
         frame.setSize(800, 600);
         frame.setResizable(false);
@@ -58,7 +57,7 @@ public class GUI extends Hangman implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
     }
 
     // Renders a keyboard with the alphabet in lowercase
@@ -66,16 +65,18 @@ public class GUI extends Hangman implements ActionListener {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
+        // Bind Action Events to buttons
         for (char letter = 'a'; letter <= 'z'; letter++) {
             JButton button = new JButton(letter + "");
             button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+				@Override
+				public void actionPerformed(ActionEvent e) {
                     String letterInButton = button.getText();
-                    guessLetter(letterInButton);
-                    hangman.setText(getHangman());
-                    word.setText(getProgressWord());
-                    button.setEnabled(false);
-                }
+                    // guessLetter(letterInButton);
+                    // word.setText(getProgressWord());
+                    // guessLetter(letterInButton);
+					button.setEnabled(false);  
+				}   
             });
             panel.add(button);
         }
