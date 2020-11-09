@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -200,42 +198,12 @@ public class Hangman implements ActionListener {
         // Main frame window
         frame = new JFrame();
 
-        // Define panel
-        // panel = new JPanel();
-        // panel.setLayout(new GridLayout(5, 1));
-
-        // Define hangman container
-        // hangmanLabel = new JLabel();
-        // hangman.setFont(new Font("Serif", Font.PLAIN, 14));
-        // hangmanLabel.setText(getHangman());
-        // hangmanLabel.setHorizontalAlignment(JLabel.CENTER);
-        // hangmanLabel.setSize(200, 200);
-
-        // Define word container
-        // wordLabel = new JLabel();
-        // wordLabel.setText(getFormattedProgressWord());
-        // wordLabel.setHorizontalAlignment(JLabel.CENTER);
-        // wordLabel.setSize(400, 200);
-
-        // Define labels
-        // label = new JLabel("Welcome to Hangman!");
-        // label.setHorizontalAlignment(JLabel.CENTER);
-        
-        // Add components
-        // panel.add(label);
-        // panel.add(hangmanLabel);
-        // panel.add(wordLabel);
-        // panel.add(generateKeyboard());
-        // panel.add(generateCheatButton());
-        // frame.add(panel);
-
         // Set default conditions
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle(title);
         frame.pack();
         frame.setSize(800, 600);
         frame.setResizable(false);
-        
     }
 
     public void emptyFrame() {
@@ -289,7 +257,6 @@ public class Hangman implements ActionListener {
 
         // Row 4 (Components made in Row 3)
         newPanel.add(listOfWordsPanel);
-        newPanel.setVisible(true);
         
         // Row 5
         JButton startGameButton = new JButton("Start Game");
@@ -298,10 +265,12 @@ public class Hangman implements ActionListener {
                 System.out.println("Start Game Button Clicked");
             }
         });
+        
         startGameButton.setSize(100, 80);
         newPanel.add(startGameButton);
 
         frame.add(newPanel);
+        newPanel.setVisible(true);
         frame.setVisible(true); // Put last
 
         // Add event listener after adding the listOfWordsPanel
@@ -311,22 +280,28 @@ public class Hangman implements ActionListener {
 
                 // If the field is not empty and only one word
                 if (!addWordText.equals("") && addWordText.split(" ").length == 1) {
-                    System.out.println(addWordText);
+                    // System.out.println(addWordText);
 
                     // Add the word to list of words
                     listOfWords.add(addWordText);
 
                     for (int i = 0; i < listOfWords.size(); i++) {
                         listOfWordsPanel.add(new JLabel(listOfWords.get(i)));
+                        JLabel nwe = new JLabel("hi");
+
+                        nwe.setVisible(true);
+                        listOfWordsPanel.setVisible(true);
                     }
 
-                    // listOfWordsPanel.setVisible(true);
+                    System.out.println(listOfWords);
+                    
 
                     // updateListOfWordsPanel(listOfWordsPanel, listOfWords);
 
                     addWordField.setText("");
                 } else {
                     System.out.println(Arrays.deepToString(addWordText.split(" ")));
+                    addWordField.setText("");
                 }
             }
         });
