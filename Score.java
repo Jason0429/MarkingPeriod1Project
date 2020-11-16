@@ -1,7 +1,7 @@
 public class Score {
-    private double currentScore;
-    private int min = Integer.MIN_VALUE;
-    private int max = Integer.MAX_VALUE;
+    private int currentScore;
+    private static int min = Integer.MIN_VALUE;
+    private static int max = Integer.MAX_VALUE;
 
     public Score() {
         currentScore = 0;
@@ -10,14 +10,16 @@ public class Score {
     public double getScore() {
         return currentScore;
     }
+
+    public static int getRandomInt() {
+        return (int) Math.sqrt(Math.pow(Math.abs((Math.random() * (max - min + 1) + min)), 1));
+    }
     
     public void subtractPoints() {
-        double randomNumber = Math.random() * (max - min + 1) + min;
-        currentScore -= Math.sqrt(Math.abs(Math.pow(randomNumber, randomNumber)));
+        currentScore -= getRandomInt();
     }
 
     public void addPoints() {
-        double randomNumber = Math.random() * (max - min + 1) + min;
-        currentScore += Math.sqrt(Math.abs(Math.pow(randomNumber, randomNumber)));
+        currentScore += getRandomInt();
     }
 }

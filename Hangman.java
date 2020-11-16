@@ -130,6 +130,13 @@ public class Hangman {
     }
 
     /*
+        Sets progressWord
+    */
+    public void setProgressWord(String word) {
+        progressWord = word;
+    }
+
+    /*
         Returns progressWord
     */
     public String getProgressWord() {
@@ -218,11 +225,14 @@ public class Hangman {
         Checks if game is over.
     */
     public void buttonPress(String letter) {
+        
+        // If correct
         if (isValid(letter)) {
             score.addPoints();
             revealLetter(letter);
             wordLabel.setText(getFormattedProgressWord());
         } else {
+            // If wrong
             score.subtractPoints();
             numOfWrongGuesses++;
             setHangman();
@@ -347,7 +357,7 @@ public class Hangman {
             public void actionPerformed(ActionEvent e) {
                 String addWordText = addWordField.getText().toLowerCase().trim();
 
-                // If the field is not empty and only one word
+                // If the field is not empty, only consists of letters, and only one word
                 if (!isEmpty(addWordText) && isAlpha(addWordText) && isOneWord(addWordText)) {
 
                     // Add the word to list of words
@@ -395,9 +405,9 @@ public class Hangman {
     */
     public void end() {
         if (progressWord.equals(wordToGuess)) {
-            wordLabel.setText(String.format("Congratulations %s! The word was: %s", getName(), getWordToGuess()));
+            wordLabel.setText(String.format("Congratulations %s! The word was: %s. Your score is: %d", getName(), getWordToGuess(), score.getScore()));
         } else {
-            wordLabel.setText(String.format("Nice try %s! The word was: %s", getName(), getWordToGuess()));
+            wordLabel.setText(String.format("Nice try %s! The word was: %s. Your score is: %d", getName(), getWordToGuess(), score.getScore()));
         }
     }
 }
